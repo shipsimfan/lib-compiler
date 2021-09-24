@@ -1,1 +1,1 @@
-pub trait TokenClass: Clone {}
+pub trait TokenClass: Clone + std::fmt::Display {}

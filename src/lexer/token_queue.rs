@@ -16,3 +16,13 @@ impl<C: TokenClass> TokenQueue<C> {
         self.tokens.push_back(token);
     }
 }
+
+impl<C: TokenClass> std::fmt::Display for TokenQueue<C> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for token in &self.tokens {
+            writeln!(f, "{}", token)?;
+        }
+
+        Ok(())
+    }
+}
