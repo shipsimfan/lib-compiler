@@ -18,6 +18,10 @@ impl<C: TokenClass> Token<C> {
     pub fn class(&self) -> &C {
         &self.class
     }
+
+    pub fn line(&self) -> usize {
+        self.line
+    }
 }
 
 impl<C: TokenClass> std::fmt::Display for Token<C> {
