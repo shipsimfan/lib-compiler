@@ -15,6 +15,14 @@ impl<C: TokenClass> TokenQueue<C> {
     pub fn insert(&mut self, token: Token<C>) {
         self.tokens.push_back(token);
     }
+
+    pub fn next(&mut self) -> Token<C> {
+        self.tokens.pop_front().unwrap()
+    }
+
+    pub fn unget(&mut self, token: Token<C>) {
+        self.tokens.push_front(token);
+    }
 }
 
 impl<C: TokenClass> std::fmt::Display for TokenQueue<C> {
