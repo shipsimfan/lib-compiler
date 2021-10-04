@@ -10,14 +10,15 @@ pub use token_class::TokenClass;
 pub use token_queue::TokenQueue;
 pub use whitespace_ignore::WhitespaceIgnore;
 
-pub type GetNextTokenFn<C, E> = fn(iter: &mut CharIter) -> Result<Option<Token<C>>, E>;
+pub type GetNextTokenFn<C> =
+    fn(iter: &mut CharIter) -> Result<Option<Token<C>>, Box<dyn std::error::Error>>;
 
-pub fn tokenize<C: TokenClass, E: std::error::Error>(
+pub fn tokenize<C: TokenClass>(
     input: String,
-    get_next_token: GetNextTokenFn<C, E>,
+    get_next_token: GetNextTokenFn<C>,
     end_of_file_token: C,
     whitespace_ignore: WhitespaceIgnore<C>,
-) -> Result<TokenQueue<C>, E> {
+) -> Result<TokenQueue<C>, Box<dyn std::error::Error>> {
     let mut tokens = TokenQueue::new();
     let mut iter = CharIter::new(input);
 
