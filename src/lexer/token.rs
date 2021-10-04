@@ -14,6 +14,10 @@ impl<C: TokenClass> Token<C> {
             column,
         }
     }
+
+    pub fn class(&self) -> &C {
+        &self.class
+    }
 }
 
 impl<C: TokenClass> std::fmt::Display for Token<C> {
