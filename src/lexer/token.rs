@@ -1,5 +1,6 @@
 use super::TokenClass;
 
+#[derive(Debug)]
 pub struct Token<C: TokenClass> {
     class: C,
     line: usize,
